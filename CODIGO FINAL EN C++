@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+int main() {
+    double r1 = 470, r2 = 240, r3 = 200, r4 = 220, r5 = 220, r6 = 470;
+    double Va = 0, Vb = 5, Vc = 0;
+    double determinante, i1, i2, i3;
+
+    // Cálculo del determinante
+    determinante = (r1 + r2 + r3) * ((r2 + r4 + r5) * (r3 + r5 + r6) - pow(-r5, 2))
+        - (-r2) * ((-r2) * (r3 + r5 + r6) - (-r5) * (-r3))
+        + ((-r2) * (-r5) - (r2 + r4 + r5) * (-r3));
+
+    // Cálculo de la i1
+    i1 = ((Va)*((r2 + r4 + r5) * (r3 + r5 + r6) - pow(-r5, 2))
+        - (-Vb) * ((-r2) * (r3 + r5 + r6) - (-r3) * (-r5))
+        + (Vc) * ((-r2) * (-r5) - (-r3) * (r2 + r4 + r5))) / determinante;
+
+    // Cálculo de la i2
+    i2 = ((r1 + r2 + r3) * ((-Vb) * (r3 + r5 + r6) - (-r5) * (Vc))
+        - (Va) * ((-r2) * (r3 + r5 + r6) - (-r5) * (-r3))
+        + (-r3) * ((-r2) * (Vc) - (-r3) * (-Vb))) / determinante;
+
+    // Cálculo de la i3
+    i3 = ((r1 + r2 + r3) * ((r2 + r4 + r5) * (Vc) - (-Vb) * (-r5))
+        - (-r2) * ((-r2) * (Vc) - (-r3) * (-Vb))
+        + (Va) * ((-r2) * (-r5) - (r2 + r4 + r5) * (-r3))) / determinante;
+
+    // Imprimir los resultados
+    std::cout << "Determinante: " << determinante << std::endl;
+    std::cout << "i1: " << i1 << std::endl;
+    std::cout << "i2: " << i2 << std::endl;
+    std::cout << "i3: " << i3 << std::endl;
+
+    return 0;
+}
