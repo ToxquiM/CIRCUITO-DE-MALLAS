@@ -3,26 +3,46 @@
 #include <cmath>
 
 int main() {
-    double r1 = 470, r2 = 240, r3 = 200, r4 = 220, r5 = 220, r6 = 470;
-    double Va = 0, Vb = 5, Vc = 0;
+    double r1, r2, r3, r4, r5, r6;
+    double Va, Vb, Vc;
     double determinante, i1, i2, i3;
+
+    // Solicitar al usuario los valores de las resistencias
+    std::cout << "Ingrese el valor de r1: ";
+    std::cin >> r1;
+    std::cout << "Ingrese el valor de r2: ";
+    std::cin >> r2;
+    std::cout << "Ingrese el valor de r3: ";
+    std::cin >> r3;
+    std::cout << "Ingrese el valor de r4: ";
+    std::cin >> r4;
+    std::cout << "Ingrese el valor de r5: ";
+    std::cin >> r5;
+    std::cout << "Ingrese el valor de r6: ";
+    std::cin >> r6;
+
+    // Solicitar al usuario los valores de los voltajes
+    std::cout << "Ingrese el valor de Va: ";
+    std::cin >> Va;
+    std::cout << "Ingrese el valor de Vb: ";
+    std::cin >> Vb;
+    std::cout << "Ingrese el valor de Vc: ";
+    std::cin >> Vc;
 
     // Cálculo del determinante
     determinante = (r1 + r2 + r3) * ((r2 + r4 + r5) * (r3 + r5 + r6) - pow(-r5, 2))
         - (-r2) * ((-r2) * (r3 + r5 + r6) - (-r5) * (-r3))
         + ((-r2) * (-r5) - (r2 + r4 + r5) * (-r3));
 
-    // Cálculo de la i1
+    // Cálculo de las corrientes
     i1 = ((Va)*((r2 + r4 + r5) * (r3 + r5 + r6) - pow(-r5, 2))
         - (-Vb) * ((-r2) * (r3 + r5 + r6) - (-r3) * (-r5))
         + (Vc) * ((-r2) * (-r5) - (-r3) * (r2 + r4 + r5))) / determinante;
 
-    // Cálculo de la i2
     i2 = ((r1 + r2 + r3) * ((-Vb) * (r3 + r5 + r6) - (-r5) * (Vc))
         - (Va) * ((-r2) * (r3 + r5 + r6) - (-r5) * (-r3))
         + (-r3) * ((-r2) * (Vc) - (-r3) * (-Vb))) / determinante;
 
-    // Cálculo de la i3
     i3 = ((r1 + r2 + r3) * ((r2 + r4 + r5) * (Vc) - (-Vb) * (-r5))
         - (-r2) * ((-r2) * (Vc) - (-r3) * (-Vb))
         + (Va) * ((-r2) * (-r5) - (r2 + r4 + r5) * (-r3))) / determinante;
@@ -35,3 +55,4 @@ int main() {
 
     return 0;
 }
+
